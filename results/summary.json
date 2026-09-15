@@ -1,0 +1,71 @@
+{
+  "research_question": "Does structural MRI add predictive value beyond clinical and cognitive data when predicting Alzheimer's disease progression and development?",
+  "dataset": {
+    "cohort": "OASIS-3 only",
+    "clinical_visits": 8625,
+    "clinical_participants": 1377,
+    "labeled_t1_mri_sessions": 1964,
+    "mri_participants": 1106,
+    "split": "fixed subject-level train/val/test, no individual crosses splits"
+  },
+  "outcomes": {
+    "progression": "Increased Clinical Dementia Rating (CDR) at the next available visit",
+    "development": "Development of Alzheimer's disease within three years among individuals beginning at CDR 0"
+  },
+  "results": {
+    "whole_volume": {
+      "model": "r2plus1d_18 3D CNN embeddings + clinical/cognitive LightGBM fusion",
+      "progression": {
+        "test_n": 1073,
+        "full_model_auc": 0.7925,
+        "mri_contribution_delta": -0.004
+      },
+      "development": {
+        "test_n": 745,
+        "image_only_auc": 0.5776,
+        "full_model_auc": 0.8017,
+        "mri_contribution_delta": 0.005
+      }
+    },
+    "hippocampal_roi": {
+      "model": "64x64x64-voxel hippocampal ROI, 3D ResNet-18-style CNN embeddings + clinical/cognitive LightGBM fusion",
+      "progression": {
+        "test_n": 381,
+        "full_model_auc": 0.8034,
+        "mri_masked_auc": 0.7809,
+        "mri_contribution_delta": 0.0225
+      },
+      "development": {
+        "test_n": 286,
+        "image_only_auc": 0.6242,
+        "full_model_auc": 0.8582,
+        "mri_masked_auc": 0.8046,
+        "mri_contribution_delta": 0.0536
+      }
+    },
+    "multiregion_roi": {
+      "model": "Hippocampal + entorhinal cortex + amygdala + ventricular ROI CNN embeddings + clinical/cognitive LightGBM fusion",
+      "progression": {
+        "test_n": 381,
+        "full_model_auc": 0.8028,
+        "mri_masked_auc": 0.763,
+        "mri_contribution_delta": 0.0399
+      },
+      "development": {
+        "test_n": 286,
+        "image_only_auc": 0.5871,
+        "full_model_auc": 0.8602,
+        "mri_masked_auc": 0.8268,
+        "mri_contribution_delta": 0.0334
+      }
+    }
+  },
+  "interpretation": [
+    "Clinical and cognitive variables provided a strong baseline.",
+    "Whole-volume MRI added negligible independent predictive value.",
+    "Anatomy-focused MRI recovered a stronger imaging signal.",
+    "The largest MRI contribution was the hippocampal development result of +0.0536 AUC.",
+    "The highest overall AUC was the multi-region development result of 0.8602.",
+    "Overall fused performance and the unique contribution of MRI are not the same concept."
+  ]
+}

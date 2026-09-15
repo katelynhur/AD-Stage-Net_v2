@@ -1,0 +1,23 @@
+# Core dependencies for AD-Stage-Net v2, derived from the imports actually
+# used by the scripts under src/. Versions are unpinned minimums -- pin
+# exact versions yourself once you have a working environment, for full
+# reproducibility.
+
+numpy>=1.24
+pandas>=1.5
+scikit-learn>=1.2
+lightgbm>=3.3
+
+torch>=2.0
+torchvision>=0.15
+monai>=1.2
+
+nibabel>=5.0
+nilearn>=0.10
+SimpleITK>=2.2
+
+tqdm>=4.65
+
+# FastSurfer (src/data/segment_rois_fastsurfer.py) is a separate, third-party
+# tool with its own environment and license -- install per
+# https://github.com/Deep-MI/FastSurfer, not via this file.

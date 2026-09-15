@@ -1,0 +1,10 @@
+{
+  "_description": "Structure of data/processed/splits/subject_split.json, produced once by src/data/split_subjects.py and consumed by src/data/apply_subject_split.py and src/models/common.py. Placeholder values only -- the real file contains OASIS-3 subject identifiers and is never committed to this repository (see .gitignore).",
+  "seed": 42,
+  "train_frac": 0.70,
+  "val_frac": 0.15,
+  "test_frac": 0.15,
+  "train_subjects": ["<OASIS3 subject id>", "..."],
+  "val_subjects": ["<OASIS3 subject id>", "..."],
+  "test_subjects": ["<OASIS3 subject id>", "..."]
+}

@@ -1,0 +1,33 @@
+{
+  "hippocampal": {
+    "display_name": "Hippocampal ROI + Clinical/Cognitive",
+    "roi_checkpoint": "hippocampal_roi_encoder.pt",
+    "fusion_model": "hippocampal_fusion_model.txt",
+    "crop_shape": [
+      64,
+      64,
+      64
+    ],
+    "regions": [
+      "hippocampus"
+    ],
+    "embedding_feature_names": []
+  },
+  "multi_region": {
+    "display_name": "Multi-Region ROI + Clinical/Cognitive",
+    "roi_checkpoint": "multi_region_roi_encoder.pt",
+    "fusion_model": "multi_region_fusion_model.txt",
+    "crop_shape": [
+      64,
+      64,
+      64
+    ],
+    "regions": [
+      "hippocampus",
+      "entorhinal",
+      "amygdala",
+      "ventricles"
+    ],
+    "embedding_feature_names": []
+  }
+}

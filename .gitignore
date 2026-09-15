@@ -1,0 +1,79 @@
+# Restricted research data
+# Root-anchored only -- src/data/ holds this project's OASIS-3 pipeline
+# *source code*, not data, and must stay tracked.
+/data/
+/raw/
+/processed/
+clinical_data/
+participant_data/
+
+# Medical imaging
+*.nii
+*.nii.gz
+*.dcm
+*.mgz
+*.mgh
+
+# Predictions that may contain participant-level records
+predictions/
+**/predictions/
+*.parquet
+
+# Trained models and checkpoints
+# Root-anchored only -- src/models/ holds this project's shared LightGBM
+# training/eval *source code*, not trained checkpoints, and must stay tracked.
+/models/
+checkpoints/
+**/checkpoints/
+*.pt
+*.pth
+*.ckpt
+*.pkl
+*.joblib
+# LightGBM booster dumps are plain .txt -- scoped to any models/ directory
+# (e.g. app/models/, used for local Hugging Face Space testing) rather than
+# a blanket *.txt, which would also match tracked files like requirements.txt.
+models/*.txt
+**/models/*.txt
+
+# Environments and external tools
+venv/
+venv_*/
+.venv/
+**/venv/
+**/venv_*/
+tools/
+**/tools/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials*
+secrets*
+.mcp.json
+.claude/
+.claude*
+
+# Python and notebooks
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+
+# Logs and temporary files
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+

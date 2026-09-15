@@ -1,0 +1,31 @@
+# Copied verbatim from the live Hugging Face Space's requirements.txt
+# (https://huggingface.co/spaces/katelynhur/AD-Stage-Net_v2/blob/main/requirements.txt).
+nibabel>=5.2
+numpy>=1.26
+pandas>=2.1
+plotly>=5.20
+lightgbm>=4.3
+scikit-learn>=1.4
+scipy>=1.11
+scikit-image>=0.22
+h5py>=3.10
+Pillow>=10
+PyYAML>=6
+yacs>=0.1.8
+tqdm>=4.66
+requests>=2.31
+einops>=0.7
+monai>=1.3
+torchio>=0.19
+SimpleITK>=2.3
+
+# Not listed in the Space's own requirements.txt because the Hugging Face
+# Spaces/ZeroGPU runtime provides them directly (gradio via the Space's
+# `sdk_version`, torch via the ZeroGPU base image). Verified from the live
+# Space's README frontmatter: sdk_version "5.49.1", python_version "3.10.13".
+# No specific torch/spaces version is pinned anywhere in the live Space, so
+# none is invented here -- install a torch build matching your own CUDA
+# setup from https://pytorch.org/ for local reproduction.
+gradio==5.49.1
+spaces
+torch
