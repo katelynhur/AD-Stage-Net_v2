@@ -1,0 +1,110 @@
+{
+  "train_seeds": [
+    42,
+    202,
+    303,
+    404
+  ],
+  "report_seeds": [
+    202,
+    303,
+    404
+  ],
+  "tab_baseline_reused": {
+    "progression": 0.7503,
+    "preclinical": 0.7791
+  },
+  "n_canon_rows": 8625,
+  "n_emb_rows": 8625,
+  "n_with_real_embedding": 2839,
+  "progression": {
+    "n_test": 1073,
+    "n_test_with_embedding": 381,
+    "tabular_only_reused_baseline": 0.7503,
+    "image_only": {
+      "mean": 0.5570845909127987,
+      "std": 0.0,
+      "n_seeds": 3,
+      "per_seed": {
+        "202": 0.5570845909127987,
+        "303": 0.5570845909127987,
+        "404": 0.5570845909127987
+      }
+    },
+    "fused": {
+      "mean": 0.7550208010441309,
+      "std": 1.1102230246251565e-16,
+      "n_seeds": 3,
+      "per_seed": {
+        "202": 0.7550208010441308,
+        "303": 0.7550208010441308,
+        "404": 0.7550208010441308
+      }
+    },
+    "masked_tabular_equivalent": {
+      "per_seed": {
+        "202": 0.7443184599070071,
+        "303": 0.7443184599070071,
+        "404": 0.7443184599070071
+      },
+      "mean": 0.7443184599070071,
+      "std": 0.0
+    },
+    "mask_delta_masked_minus_fused": {
+      "per_seed": {
+        "202": -0.010702341137123761,
+        "303": -0.010702341137123761,
+        "404": -0.010702341137123761
+      },
+      "mean": -0.010702341137123761,
+      "std": 0.0
+    },
+    "verdict": "contributes",
+    "verdict_note": "SD of the delta across report seeds is 0.0 -- the 'exceeds its own SD' threshold is degenerate here (any nonzero delta trivially passes); flagged, not silently treated as a confident verdict."
+  },
+  "preclinical": {
+    "n_test": 745,
+    "n_test_with_embedding": 286,
+    "tabular_only_reused_baseline": 0.7791,
+    "image_only": {
+      "mean": 0.5870832203849281,
+      "std": 0.0,
+      "n_seeds": 3,
+      "per_seed": {
+        "202": 0.5870832203849281,
+        "303": 0.5870832203849281,
+        "404": 0.5870832203849281
+      }
+    },
+    "fused": {
+      "mean": 0.8027469052136983,
+      "std": 1.1102230246251565e-16,
+      "n_seeds": 3,
+      "per_seed": {
+        "202": 0.8027469052136984,
+        "303": 0.8027469052136984,
+        "404": 0.8027469052136984
+      }
+    },
+    "masked_tabular_equivalent": {
+      "per_seed": {
+        "202": 0.7872052046625102,
+        "303": 0.7872052046625102,
+        "404": 0.7872052046625102
+      },
+      "mean": 0.7872052046625102,
+      "std": 0.0
+    },
+    "mask_delta_masked_minus_fused": {
+      "per_seed": {
+        "202": -0.015541700551188198,
+        "303": -0.015541700551188198,
+        "404": -0.015541700551188198
+      },
+      "mean": -0.015541700551188198,
+      "std": 0.0
+    },
+    "verdict": "contributes",
+    "verdict_note": "SD of the delta across report seeds is 0.0 -- the 'exceeds its own SD' threshold is degenerate here (any nonzero delta trivially passes); flagged, not silently treated as a confident verdict."
+  }
+}

@@ -73,6 +73,12 @@ T1 volumes (selected from a 7-architecture sweep); penultimate-layer
 embeddings fused with the clinical/cognitive baseline in LightGBM.
 (`src/training/train_wholevolume_cnn.py`,
 `src/evaluation/wholevolume_fusion_ablation.py`)
+**Provenance note:** the whole-volume numbers in the Results table below
+are inherited from the original project's production model, whose image
+block combined whole-volume MRI **and PET** embeddings together, not MRI
+alone -- see [`results/whole_volume/`](results/whole_volume/) for full
+disclosure, including a lower-rigor but genuinely MRI-only comparison
+point.
 
 **Hippocampal ROI** -- 64x64x64-voxel hippocampal crop, 3D ResNet-18-style
 CNN, embeddings fused with the clinical/cognitive baseline.
@@ -93,16 +99,22 @@ time -- not an independently retrained clinical-only model.
 ## Results
 
 All numbers below are read directly from `results/summary.json` /
-`results/*/*.json`; nothing here was estimated or back-calculated.
+`results/*/*.json`; nothing here was estimated or back-calculated. See
+[`results/README.md`](results/README.md) for metric definitions and full
+provenance, including two caveats flagged below.
 
 | Approach | Task | Test n | Image-only AUC | Full-model AUC | MRI-masked AUC | MRI contribution (Δ AUC) |
 |---|---|---|---|---|---|---|
-| Whole-volume | Progression | 1,073 | -- | 0.7925 | -- | -0.0040 |
-| Whole-volume | Development | 745 | 0.5776 | 0.8017 | -- | +0.0050 |
-| Hippocampal ROI | Progression | 381 | -- | 0.8034 | 0.7809 | +0.0225 |
-| Hippocampal ROI | Development | 286 | 0.6242 | 0.8582 | 0.8046 | +0.0536 |
-| Multi-region ROI | Progression | 381 | -- | 0.8028 | 0.7630 | +0.0399 |
-| Multi-region ROI | Development | 286 | 0.5871 | 0.8602 | 0.8268 | +0.0334 |
+| Whole-volume¹ | Progression | 1,073 | 0.5818 | 0.7925 | 0.7887 | -0.0040 |
+| Whole-volume¹ | Development | 745 | 0.5776 | 0.8017 | 0.8067 | +0.0050 |
+| Hippocampal ROI | Progression | 381² | 0.5546³ | 0.8034 | 0.7809 | +0.0225 |
+| Hippocampal ROI | Development | 286² | 0.6242³ | 0.8582 | 0.8046 | +0.0536 |
+| Multi-region ROI⁴ | Progression | 381² | 0.5571³ | 0.8028 | 0.7630 | +0.0399 |
+| Multi-region ROI⁴ | Development | 286² | 0.5871³ | 0.8602 | 0.8268 | +0.0334 |
+
+Supporting files: [`results/whole_volume/`](results/whole_volume/) ·
+[`results/hippocampal_roi/`](results/hippocampal_roi/) ·
+[`results/multiregion_roi/`](results/multiregion_roi/)
 
 (Whole-volume Δ is reported as masked − full, following the ablation
 convention in `src/evaluation/wholevolume_fusion_ablation.py`; ROI Δ is
@@ -110,6 +122,28 @@ full − masked. Both read as "how much AUC is at stake in the MRI block";
 see `docs/methods.md` for why the two approaches use this convention and
 why negative/near-zero whole-volume deltas and positive ROI deltas are
 comparable evidence of the same underlying pattern.)
+
+¹ **Provenance caveat:** these whole-volume numbers come from the
+original project's production model, whose image block combined
+whole-volume MRI **and PET** embeddings (PET covered ~25% of visits in
+that cohort) -- not an isolated MRI-only model. This repository's own
+whole-volume pipeline is MRI-only but has not been re-run to regenerate
+these figures. See [`results/whole_volume/`](results/whole_volume/) for
+full disclosure and a lower-rigor, genuinely MRI-only comparison point.
+² Full-model/MRI-masked/Δ columns use the scan-eligible subset (test rows
+with a real ROI embedding) at seed 202, not the full test population.
+³ Image-only AUC for the ROI approaches is computed on the **full** test
+population (1,073 / 745), not the scan-eligible subset used for the other
+three columns in the same row -- the denominators differ.
+⁴ **Provenance caveat:** the multi-region full-model/MRI-masked/Δ values
+are retained from previous publication; the source file implementing the
+same scan-eligible-subset methodology used for hippocampal ROI could not
+be located during a recursive audit of the original research pipeline.
+The only located multi-region result file uses the full test population
+and reports different fused-model AUCs (0.7550 progression, 0.8027
+development) -- an unresolved discrepancy, documented in
+[`results/multiregion_roi/`](results/multiregion_roi/). Image-only values
+for multi-region ARE verified and unaffected by this caveat.
 
 ### Interpretation
 

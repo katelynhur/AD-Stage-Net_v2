@@ -15,15 +15,19 @@
   "results": {
     "whole_volume": {
       "model": "r2plus1d_18 3D CNN embeddings + clinical/cognitive LightGBM fusion",
+      "provenance_caveat": "full_model_auc, image_only_auc, and mri_masked_auc below are inherited from the original project's production Stage-4 model, whose image block combined whole-volume MRI AND PET embeddings together -- not an MRI-only model. This repository's own whole-volume pipeline (src/training/train_wholevolume_cnn.py, src/evaluation/wholevolume_fusion_ablation.py) is MRI-only and has not been re-run to regenerate these numbers. See results/whole_volume/mri_pet_production_fusion.json and results/README.md for full detail, including a lower-rigor (single-seed, untuned) genuinely MRI-only alternative.",
       "progression": {
         "test_n": 1073,
+        "image_only_auc": 0.5818,
         "full_model_auc": 0.7925,
+        "mri_masked_auc": 0.7887,
         "mri_contribution_delta": -0.004
       },
       "development": {
         "test_n": 745,
         "image_only_auc": 0.5776,
         "full_model_auc": 0.8017,
+        "mri_masked_auc": 0.8067,
         "mri_contribution_delta": 0.005
       }
     },
@@ -31,6 +35,7 @@
       "model": "64x64x64-voxel hippocampal ROI, 3D ResNet-18-style CNN embeddings + clinical/cognitive LightGBM fusion",
       "progression": {
         "test_n": 381,
+        "image_only_auc": 0.5546,
         "full_model_auc": 0.8034,
         "mri_masked_auc": 0.7809,
         "mri_contribution_delta": 0.0225
@@ -45,8 +50,10 @@
     },
     "multiregion_roi": {
       "model": "Hippocampal + entorhinal cortex + amygdala + ventricular ROI CNN embeddings + clinical/cognitive LightGBM fusion",
+      "provenance_caveat": "full_model_auc, mri_masked_auc, and mri_contribution_delta below are retained from previous publication. During this audit, the exact source file implementing the scan-eligible-subset-at-seed-202 methodology (matching the hippocampal ROI approach) could not be located. The only located multi-region result file (results/multiregion_roi/fusion_multiseed_full_test_population.json) uses the full test population and reports different fused-model values (progression 0.7550, development 0.8027) -- a known, unresolved discrepancy. image_only_auc values ARE verified against that file.",
       "progression": {
         "test_n": 381,
+        "image_only_auc": 0.5571,
         "full_model_auc": 0.8028,
         "mri_masked_auc": 0.763,
         "mri_contribution_delta": 0.0399

@@ -1,0 +1,37 @@
+{
+  "_provenance_note": "IMPORTANT: this file's 'image' block combines whole-volume MRI (mri3d_emb_*) AND PET (pet2d_emb_*) embeddings -- it is the original project's production Stage-4 fusion/ablation model, not an MRI-only model. This repository's own whole-volume script (src/training/train_wholevolume_cnn.py, src/evaluation/wholevolume_fusion_ablation.py) trains a genuinely MRI-only fused model from scratch and has not been re-run on this data; PET embeddings are not available in this repository's own pipeline at all. These values are retained from the original production run for continuity with previously published numbers. PET coverage in the source cohort was ~25% (2187/8625 visits had a PET embedding vs 3051/8625 for MRI), so PET plausibly contributes to the 'full' and 'image-only' scores below.",
+  "source_files": [
+    "03_multimodal_phase3/results/stage4/s4_ablation.json (fused_tuned full / no_image scenarios)",
+    "03_multimodal_phase3/results/stage4/s4_ablation_vs_phase2.json (phase3_full / phase3_no_image / phase3_delta)",
+    "03_multimodal_phase3/results/stage4/s4_grid_metrics.json (progression_image / preclinical_image, untuned grid)"
+  ],
+  "progression": {
+    "n_test": 1073,
+    "image_only_mri_and_pet_untuned": 0.5817521820703156,
+    "fused_tuned_full_mri_and_pet": 0.7925,
+    "fused_tuned_full_sensitivity": 0.4769,
+    "fused_tuned_full_specificity": 0.8982,
+    "masked_both_modalities_zeroed": 0.7887,
+    "masked_both_modalities_zeroed_sensitivity": 0.4769,
+    "masked_both_modalities_zeroed_specificity": 0.8865,
+    "mri_contribution_delta_as_previously_published": -0.004,
+    "recomputed_delta_from_full_and_masked_above": -0.0038,
+    "delta_discrepancy_note": "The previously published delta (-0.0040) differs from directly recomputing masked-minus-full from the values in s4_ablation_vs_phase2.json (-0.0038) by 0.0002. Both are shown; the source of the small discrepancy could not be traced."
+  },
+  "preclinical_aka_development": {
+    "n_test": 745,
+    "image_only_mri_and_pet_untuned": 0.577572964669739,
+    "fused_tuned_full_mri_and_pet": 0.8017,
+    "fused_tuned_full_sensitivity": 0.2581,
+    "fused_tuned_full_specificity": 0.9412,
+    "masked_both_modalities_zeroed": 0.8067,
+    "masked_both_modalities_zeroed_sensitivity": 0.2258,
+    "masked_both_modalities_zeroed_specificity": 0.9426,
+    "mri_contribution_delta": 0.005
+  },
+  "mri_only_alternative_low_rigor": {
+    "_note": "A genuinely MRI-only (no PET) fusion screen exists using this repo's actual CNN architecture (r2plus1d_18), but at lower rigor: single seed (42), untuned. Source: 03_multimodal_phase3/results/per_task_architecture/screen_mri.json and PERTASK_REPORT.md, which states these scores are 'not comparable to the production MRI+PET fused numbers.'",
+    "progression": {"fused_auc": 0.7548, "mask_delta": -0.0023},
+    "preclinical_aka_development": {"fused_auc": 0.7971, "mask_delta": 0.0016}
+  }
+}

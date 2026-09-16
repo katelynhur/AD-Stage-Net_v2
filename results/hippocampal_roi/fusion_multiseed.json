@@ -1,0 +1,93 @@
+{
+  "train_seeds": [
+    42,
+    202,
+    303,
+    404
+  ],
+  "report_seeds": [
+    202,
+    303,
+    404
+  ],
+  "source": "Stage 1a single-region hippocampus ROI CNN (roi_single.parquet)",
+  "n_with_real_embedding": 2840,
+  "progression": {
+    "n_test": 1073,
+    "n_test_with_embedding": 381,
+    "fused": {
+      "mean": 0.7684884574598253,
+      "std": 0.0,
+      "n_seeds": 3,
+      "per_seed": {
+        "202": 0.7684884574598253,
+        "303": 0.7684884574598253,
+        "404": 0.7684884574598253
+      }
+    },
+    "masked_tabular_equivalent": {
+      "per_seed": {
+        "202": 0.762590749653316,
+        "303": 0.762590749653316,
+        "404": 0.762590749653316
+      },
+      "mean": 0.7625907496533161,
+      "std": 1.1102230246251565e-16
+    },
+    "mask_delta_masked_minus_fused": {
+      "per_seed": {
+        "202": -0.005897707806509334,
+        "303": -0.005897707806509334,
+        "404": -0.005897707806509334
+      },
+      "mean": -0.005897707806509334,
+      "std": 0.0
+    },
+    "with_embedding_subset_seed202": {
+      "n": 381,
+      "fused_images_included": 0.8033658658658659,
+      "fused_images_masked": 0.7809059059059059,
+      "effect_of_images": 0.022459959959959974
+    },
+    "without_embedding_subset_seed202_fused": 0.7511195521791283
+  },
+  "preclinical": {
+    "n_test": 745,
+    "n_test_with_embedding": 286,
+    "fused": {
+      "mean": 0.8003523990241256,
+      "std": 1.1102230246251565e-16,
+      "n_seeds": 3,
+      "per_seed": {
+        "202": 0.8003523990241257,
+        "303": 0.8003523990241257,
+        "404": 0.8003523990241257
+      }
+    },
+    "masked_tabular_equivalent": {
+      "per_seed": {
+        "202": 0.7820547573868257,
+        "303": 0.7820547573868257,
+        "404": 0.7820547573868257
+      },
+      "mean": 0.7820547573868257,
+      "std": 0.0
+    },
+    "mask_delta_masked_minus_fused": {
+      "per_seed": {
+        "202": -0.018297641637299966,
+        "303": -0.018297641637299966,
+        "404": -0.018297641637299966
+      },
+      "mean": -0.018297641637299966,
+      "std": 0.0
+    },
+    "with_embedding_subset_seed202": {
+      "n": 286,
+      "fused_images_included": 0.8581818181818182,
+      "fused_images_masked": 0.8046280991735537,
+      "effect_of_images": 0.053553719008264444
+    },
+    "without_embedding_subset_seed202_fused": 0.7684510250569476
+  }
+}

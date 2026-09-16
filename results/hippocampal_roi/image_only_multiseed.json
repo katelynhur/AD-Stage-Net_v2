@@ -1,0 +1,48 @@
+{
+  "train_seeds": [
+    42,
+    202,
+    303,
+    404
+  ],
+  "report_seeds": [
+    202,
+    303,
+    404
+  ],
+  "n_with_real_embedding": 2840,
+  "embedding_dim": 256,
+  "source": "Stage 1a single-region hippocampus ROI CNN (roi_single.parquet)",
+  "progression": {
+    "n_test": 1073,
+    "n_test_with_embedding": 381,
+    "image_only_full_test": {
+      "mean": 0.5546210947059302,
+      "std": 0.0,
+      "n_seeds": 3,
+      "per_seed": {
+        "202": 0.5546210947059302,
+        "303": 0.5546210947059302,
+        "404": 0.5546210947059302
+      }
+    },
+    "image_only_with_embedding_subset_seed202": 0.7090215215215215,
+    "image_only_without_embedding_subset_seed202": 0.5
+  },
+  "preclinical": {
+    "n_test": 745,
+    "n_test_with_embedding": 286,
+    "image_only_full_test": {
+      "mean": 0.6241754766422699,
+      "std": 0.0,
+      "n_seeds": 3,
+      "per_seed": {
+        "202": 0.6241754766422699,
+        "303": 0.6241754766422699,
+        "404": 0.6241754766422699
+      }
+    },
+    "image_only_with_embedding_subset_seed202": 0.7965289256198347,
+    "image_only_without_embedding_subset_seed202": 0.5
+  }
+}
